@@ -1,13 +1,141 @@
-h1 {
-  font-size: 4rem;
-  margin-bottom: 30px;
+// Variablen für das Design
+$primary-color: #c2185b; // Dein Magenta-Ton
+$bg-color: #f8f9fc;
+$text-dark: #1f2937;
+$text-light: #6b7280;
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: $bg-color;
+  // Subtiler Hintergrund-Verlauf (Mesh Gradient Effekt)
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 226, 236, 0.8) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(230, 230, 255, 0.8) 0%, transparent 40%);
+  font-family: 'Inter', 'Roboto', sans-serif;
 }
 
-.hero-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin-top: -10vh;
+.transparent-nav {
+  background: transparent;
+  box-shadow: none;
+  padding: 0 2rem;
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: $text-dark;
+    letter-spacing: -0.5px;
+  }
+
+  .spacer { flex: 1 1 auto; }
+
+  a { color: $text-dark; font-weight: 500; }
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.hero-header {
+  margin-bottom: 5rem;
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: $text-dark;
+
+    .text-gradient {
+      background: linear-gradient(45deg, $primary-color, #ff8a65);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: $text-light;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+// Das Grid Layout für die Karten
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+// Styling der einzelnen Karten
+.feature-card {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 24px; // Sehr moderne, runde Ecken
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8); // Leicht transparent
+  backdrop-filter: blur(10px); // Glassmorphism Effekt
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05); // Weicher Schatten
+  border: 1px solid rgba(255,255,255,0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px); // Schwebe-Effekt
+    box-shadow: 0 20px 50px -10px rgba(194, 24, 91, 0.15); // Farbiger Schatten beim Hover
+  }
+
+  // Icon Styling
+  .icon-box {
+    background-color: rgba($primary-color, 0.1);
+    color: $primary-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+
+    mat-icon { font-size: 24px; }
+  }
+
+  mat-card-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  mat-card-content {
+    p {
+      color: $text-light;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+      min-height: 3rem; // Damit alle Buttons auf gleicher Höhe sind
+    }
+  }
+
+  mat-card-actions {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+    a {
+      width: 100%;
+      padding: 1.5rem 0; // Größere Klickfläche
+      border-radius: 12px;
+      font-weight: 600;
+    }
+  }
+}
+
+// Responsive Anpassung für Handy
+@media (max-width: 768px) {
+  .hero-header h1 { font-size: 2.5rem; }
+  .transparent-nav { padding: 0 1rem; }
 }
