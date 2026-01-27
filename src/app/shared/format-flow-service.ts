@@ -21,4 +21,24 @@ export class FormatFlowService {
     });
   }
 
+  upscaleImage(file: File, factor: number): Observable<Blob> {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('factor', factor.toString());
+
+    return this.http.post(`${URL}/upscale`, formData, {
+      responseType: 'blob'
+    });
+  }
+
+  downscaleImage(file: File, factor: number): Observable<Blob> {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('factor', factor.toString());
+
+    return this.http.post(`${URL}/downscale`, formData, {
+      responseType: 'blob'
+    });
+  }
+
 }

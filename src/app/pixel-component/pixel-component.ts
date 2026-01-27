@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from "@angular/router";
+import { FormatFlowService } from '../shared/format-flow-service';
 
 @Component({
   selector: 'ff-pixel-component',
@@ -18,7 +19,7 @@ export class PixelComponent {
   selectedFile: File | null = null;
   upscaleFactor: number = 2;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private ffservice: FormatFlowService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => this.scale = params['scale']);
@@ -31,10 +32,33 @@ export class PixelComponent {
     }
   }
 
-  onUpload(): void {
+  onUpscale(): void {
     if (this.selectedFile) {
-      console.log(`Sende Datei: ${this.selectedFile.name} mit Faktor: ${this.upscaleFactor}x`);
-      // Hier kommt später dein HTTP-Request hin
+      this.ffservice.upscaleImage(this.selectedFile, this.upscaleFactor).subscribe({
+        next: (blob: Blob) => {
+          const downloadLink = document.createElement('a');
+          downloadLink.href = URL.createObjectURL(blob);
+          downloadLink.download = `upscaled_${this.selectedFile?.name}`;
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          document.body.removeChild(downloadLink);
+        }
+      });
+    }
+  }
+
+  onDownscale(): void {
+    if (this.selectedFile) {
+      this.ffservice.downscaleImage(this.selectedFile, this.upscaleFactor).subscribe({
+        next: (blob: Blob) => {
+          const downloadLink = document.createElement('a');
+          downloadLink.href = URL.createObjectURL(blob);
+          downloadLink.download = `downscaled_${this.selectedFile?.name}`;
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          document.body.removeChild(downloadLink);
+        }
+      });
     }
   }
 
