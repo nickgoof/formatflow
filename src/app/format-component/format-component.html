@@ -21,8 +21,8 @@
   <div class="controls-container">
 
     @if (selectedFile) {
-    <div class="format-selector">
-      <span>Umwandeln in:</span>
+    <div class="format-selector" style="margin-bottom: 5px;">
+      <span>Umwandeln in: </span>
       <mat-button-toggle-group [(ngModel)]="targetFormat" name="targetFmt">
         @for (fmt of formats; track fmt) {
         <mat-button-toggle [value]="fmt" [disabled]="fmt === sourceFormat">
@@ -34,7 +34,7 @@
     }
 
     <div class="button-row">
-      <button mat-stroked-button color="primary" (click)="fileUpload.click()">
+      <button mat-stroked-button color="primary" (click)="fileUpload.click()" style="margin-right: 5px;">
         <mat-icon>folder_open</mat-icon>
         Auswählen
       </button>

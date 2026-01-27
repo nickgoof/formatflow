@@ -16,12 +16,13 @@
   </div>
 
   <div class="button-row">
-    <button mat-stroked-button color="primary" (click)="fileUpload.click()">
+    <button mat-stroked-button color="primary" (click)="fileUpload.click()" style="margin-right: 5px;">
       <mat-icon>folder_open</mat-icon>
       Auswählen
     </button>
 
-    <button matButton="filled" color="primary" [disabled]="!selectedFile" (click)="onUpscale()">
+    <button matButton="filled" color="primary" [disabled]="!selectedFile" (click)="onUpscale()"
+      style="margin-right: 5px;">
       Abschicken
       <mat-icon iconPositionEnd>send</mat-icon>
     </button>
@@ -56,12 +57,13 @@
   </div>
 
   <div class="button-row">
-    <button mat-stroked-button color="primary" (click)="fileUpload.click()">
+    <button mat-stroked-button color="primary" (click)="fileUpload.click()" style="margin-right: 5px;">
       <mat-icon>folder_open</mat-icon>
       Auswählen
     </button>
 
-    <button matButton="filled" color="primary" [disabled]="!selectedFile" (click)="onDownscale()">
+    <button matButton="filled" color="primary" [disabled]="!selectedFile" (click)="onDownscale()"
+      style="margin-right: 5px;">
       Abschicken
       <mat-icon iconPositionEnd>send</mat-icon>
     </button>

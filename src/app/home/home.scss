@@ -27,16 +27,23 @@ $text-light: #6b7280;
     letter-spacing: -0.5px;
   }
 
-  .spacer { flex: 1 1 auto; }
+  .spacer {
+    flex: 1 1 auto;
+  }
 
-  a { color: $text-dark; font-weight: 500; }
+  a {
+    color: $text-dark;
+    font-weight: 500;
+  }
 }
 
 .main-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
   text-align: center;
+  /* Zentriert Text und Überschriften */
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  /* Verhindert Scrollbars durch Padding */
 }
 
 .hero-header {
@@ -67,10 +74,16 @@ $text-light: #6b7280;
 
 // Das Grid Layout für die Karten
 .action-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  justify-items: center;
+  display: flex;
+  /* Macht die Elemente flexibel (nebeneinander) */
+  justify-content: center;
+  /* Zentriert die Karten horizontal */
+  gap: 24px;
+  /* Abstand zwischen den Karten */
+  flex-wrap: wrap;
+  /* Wichtig: Bricht auf kleinen Handys in neue Zeile um */
+  margin-top: 40px;
+  /* Etwas Abstand zur Überschrift */
 }
 
 // Styling der einzelnen Karten
@@ -81,8 +94,8 @@ $text-light: #6b7280;
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.8); // Leicht transparent
   backdrop-filter: blur(10px); // Glassmorphism Effekt
-  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05); // Weicher Schatten
-  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05); // Weicher Schatten
+  border: 1px solid rgba(255, 255, 255, 0.6);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
@@ -102,7 +115,9 @@ $text-light: #6b7280;
     height: 48px;
     margin-bottom: 1rem;
 
-    mat-icon { font-size: 24px; }
+    mat-icon {
+      font-size: 24px;
+    }
   }
 
   mat-card-title {
@@ -136,6 +151,36 @@ $text-light: #6b7280;
 
 // Responsive Anpassung für Handy
 @media (max-width: 768px) {
-  .hero-header h1 { font-size: 2.5rem; }
-  .transparent-nav { padding: 0 1rem; }
+  .hero-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .transparent-nav {
+    padding: 0 1rem;
+  }
+}
+
+.page-background {
+  /* 1. Das Bild definieren */
+  background-image: url('../../../public/photo-1710162734135-8dc148f53abe.jpg');
+  /* Pfad anpassen! */
+
+  /* 2. Sicherstellen, dass es den ganzen Screen füllt */
+  min-height: 100vh;
+  /* Mindestens die Höhe des Viewports */
+  width: 100%;
+
+  /* 3. Bild-Skalierung und Positionierung */
+  background-size: cover;
+  /* Skaliert das Bild, sodass es alles abdeckt (kein Verzerren) */
+  background-position: center;
+  /* Zentriert das Bild */
+  background-repeat: no-repeat;
+  /* Keine Wiederholung */
+  background-attachment: fixed;
+  /* Optional: Bild bleibt beim Scrollen stehen (Parallax-Effekt) */
+
+  /* 4. Layout-Reset für den Inhalt (damit Toolbar oben bleibt) */
+  display: flex;
+  flex-direction: column;
 }
