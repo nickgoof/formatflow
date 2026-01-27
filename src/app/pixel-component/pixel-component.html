@@ -1,0 +1,79 @@
+@if(scale === 'upscaling') {
+<div class="hero-container">
+  <h1>Bild aufwerten</h1>
+
+  <input type="file" style="display: none" accept="image/*" (change)="onFileSelected($event)" #fileUpload>
+
+  <div class="file-info">
+    @if (selectedFile) {
+    <h2 class="file-name">
+      <mat-icon>image</mat-icon>
+      {{ selectedFile.name }}
+    </h2>
+    } @else {
+    <h2>Bitte Bild auswählen</h2>
+    }
+  </div>
+
+  <div class="button-row">
+    <button mat-stroked-button color="primary" (click)="fileUpload.click()">
+      <mat-icon>folder_open</mat-icon>
+      Auswählen
+    </button>
+
+    <button matButton="filled" color="primary" [disabled]="!selectedFile" (click)="onUpload()">
+      Abschicken
+      <mat-icon iconPositionEnd>send</mat-icon>
+    </button>
+    <mat-button-toggle-group [(ngModel)]="upscaleFactor" name="scaleFactor" aria-label="Skalierungsfaktor">
+      <mat-button-toggle [value]="2">2x</mat-button-toggle>
+      <mat-button-toggle [value]="4">4x</mat-button-toggle>
+      <mat-button-toggle [value]="8">8x</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>
+<a matButton="filled" routerLink="/home" class="fixed-back-button">
+  <mat-icon>arrow_back</mat-icon>
+  Zurück zur Startseite
+</a>
+}
+
+@if(scale === 'downscaling') {
+<div class="hero-container">
+  <h1>Bild abwerten</h1>
+
+  <input type="file" style="display: none" accept="image/*" (change)="onFileSelected($event)" #fileUpload>
+
+  <div class="file-info">
+    @if (selectedFile) {
+    <h2 class="file-name">
+      <mat-icon>image</mat-icon>
+      {{ selectedFile.name }}
+    </h2>
+    } @else {
+    <h2>Bitte Bild auswählen</h2>
+    }
+  </div>
+
+  <div class="button-row">
+    <button mat-stroked-button color="primary" (click)="fileUpload.click()">
+      <mat-icon>folder_open</mat-icon>
+      Auswählen
+    </button>
+
+    <button matButton="filled" color="primary" [disabled]="!selectedFile" (click)="onUpload()">
+      Abschicken
+      <mat-icon iconPositionEnd>send</mat-icon>
+    </button>
+    <mat-button-toggle-group [(ngModel)]="upscaleFactor" name="scaleFactor" aria-label="Skalierungsfaktor">
+      <mat-button-toggle [value]="2">2x</mat-button-toggle>
+      <mat-button-toggle [value]="4">4x</mat-button-toggle>
+      <mat-button-toggle [value]="8">8x</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>
+<a matButton="filled" routerLink="/home" class="fixed-back-button">
+  <mat-icon>arrow_back</mat-icon>
+  Zurück zur Startseite
+</a>
+}

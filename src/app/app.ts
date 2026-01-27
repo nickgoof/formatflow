@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from "@angular/router";
+
 
 @Component({
   selector: 'ff-root',
-  imports: [RouterOutlet],
+  imports: [RouterModule, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

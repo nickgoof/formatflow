@@ -1,0 +1,54 @@
+<div class="hero-container">
+  <h1>Bild formatieren</h1>
+
+  <input type="file" style="display: none" accept=".jpg, .jpeg, .png, .webp, .pdf, .tiff, .tif"
+    (change)="onFileSelected($event)" #fileUpload>
+
+  <div class="file-info">
+    @if (selectedFile) {
+    <h2 class="file-name">
+      <mat-icon>description</mat-icon>
+      {{ selectedFile.name }}
+    </h2>
+    <p style="font-size: 0.8rem; opacity: 0.7; margin-top: -10px;">
+      Erkanntes Format: {{ sourceFormat | uppercase }}
+    </p>
+    } @else {
+    <h2>Bitte Datei auswählen</h2>
+    }
+  </div>
+
+  <div class="controls-container">
+
+    @if (selectedFile) {
+    <div class="format-selector">
+      <span>Umwandeln in:</span>
+      <mat-button-toggle-group [(ngModel)]="targetFormat" name="targetFmt">
+        @for (fmt of formats; track fmt) {
+        <mat-button-toggle [value]="fmt" [disabled]="fmt === sourceFormat">
+          {{ fmt | uppercase }}
+        </mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+    }
+
+    <div class="button-row">
+      <button mat-stroked-button color="primary" (click)="fileUpload.click()">
+        <mat-icon>folder_open</mat-icon>
+        Auswählen
+      </button>
+
+      <button mat-raised-button color="primary" [disabled]="!selectedFile || !targetFormat" (click)="onConvert()">
+        Konvertieren
+        <mat-icon iconPositionEnd>sync_alt</mat-icon>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<a matButton="filled" routerLink="/home" class="fixed-back-button">
+  <mat-icon>arrow_back</mat-icon>
+  Zurück zur Startseite
+</a>
