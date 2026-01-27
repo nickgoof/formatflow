@@ -16,7 +16,9 @@ export class FormatFlowService {
     formData.append('file', file);
     formData.append('targetFormat', targetFormat);
 
-    return this.http.post<Blob>(`${URL}/convert`, formData);
+    return this.http.post(`${URL}/convert`, formData, {
+      responseType: 'blob'
+    });
   }
 
 }
