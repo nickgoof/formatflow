@@ -21,10 +21,12 @@ $toggle-color: #c2185ca1;
   padding: 1rem;
   box-sizing: border-box;
 
-  background-color: $bg-color;
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(255, 226, 236, 0.6) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(230, 230, 255, 0.6) 0%, transparent 40%);
+  // Hintergrundbild Einstellungen
+  background-image: url('../../../public/home_bg_image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .content-wrapper {
@@ -68,8 +70,8 @@ header {
   backdrop-filter: blur(16px);
   border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 15px 35px -5px rgba(0,0,0,0.05);
-  border: 1px solid rgba(255,255,255,0.9);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
 .upload-zone {
@@ -108,11 +110,24 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    mat-icon { transform: scale(1.2); }
+
+    mat-icon {
+      transform: scale(1.2);
+    }
   }
 
-  h3 { margin: 0; font-size: 1.1rem; font-weight: 600; color: $text-dark; }
-  p { margin: 0; font-size: 0.85rem; color: $text-light; }
+  h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $text-dark;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: $text-light;
+  }
 }
 
 .file-state {
@@ -139,20 +154,24 @@ header {
     overflow: hidden;
 
     .fname {
-        font-weight: 600;
-        font-size: 0.95rem;
-        color: $text-dark;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: $text-dark;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .fmeta { font-size: 0.75rem; color: $text-light; }
+
+    .fmeta {
+      font-size: 0.75rem;
+      color: $text-light;
+    }
   }
 }
 
 .controls-section {
   margin-top: 1.5rem;
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
   padding-top: 1.5rem;
   animation: fadeIn 0.3s ease-out;
 }
@@ -191,7 +210,7 @@ header {
       color: white !important;
       border-color: $toggle-color !important;
       font-weight: 600;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     &:hover:not(.mat-button-toggle-disabled) {
@@ -219,7 +238,7 @@ header {
   background: white;
   padding: 1.2rem 2.4rem;
   border-radius: 50px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -237,6 +256,13 @@ header {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

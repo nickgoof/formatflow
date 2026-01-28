@@ -21,10 +21,12 @@ $toggle-color: #c2185ca1;
   padding: 1rem;
   box-sizing: border-box;
 
-  background-color: $bg-color;
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(255, 226, 236, 0.6) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(230, 230, 255, 0.6) 0%, transparent 40%);
+  // Hintergrundbild Einstellungen (übernommen von Home)
+  background-image: url('../../../public/home_bg_image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .content-wrapper {
