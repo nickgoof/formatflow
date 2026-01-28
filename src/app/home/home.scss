@@ -1,5 +1,4 @@
-// Variablen für das Design
-$primary-color: #c2185b; // Dein Magenta-Ton
+$primary-color: #c2185b;
 $bg-color: #f8f9fc;
 $text-dark: #1f2937;
 $text-light: #6b7280;
@@ -39,11 +38,9 @@ $text-light: #6b7280;
 
 .main-content {
   text-align: center;
-  /* Zentriert Text und Überschriften */
   padding: 20px;
   width: 100%;
   box-sizing: border-box;
-  /* Verhindert Scrollbars durch Padding */
 }
 
 .hero-header {
@@ -72,38 +69,30 @@ $text-light: #6b7280;
   }
 }
 
-// Das Grid Layout für die Karten
 .action-grid {
   display: flex;
-  /* Macht die Elemente flexibel (nebeneinander) */
   justify-content: center;
-  /* Zentriert die Karten horizontal */
   gap: 24px;
-  /* Abstand zwischen den Karten */
   flex-wrap: wrap;
-  /* Wichtig: Bricht auf kleinen Handys in neue Zeile um */
   margin-top: 40px;
-  /* Etwas Abstand zur Überschrift */
 }
 
 // Styling der einzelnen Karten
 .feature-card {
   width: 100%;
   max-width: 350px;
-  border-radius: 24px; // Sehr moderne, runde Ecken
+  border-radius: 24px;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.8); // Leicht transparent
-  backdrop-filter: blur(10px); // Glassmorphism Effekt
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05); // Weicher Schatten
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.6);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-5px); // Schwebe-Effekt
-    box-shadow: 0 20px 50px -10px rgba(194, 24, 91, 0.15); // Farbiger Schatten beim Hover
-  }
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px -10px rgba(194, 24, 91, 0.15);
 
-  // Icon Styling
   .icon-box {
     background-color: rgba($primary-color, 0.1);
     color: $primary-color;
@@ -131,7 +120,7 @@ $text-light: #6b7280;
       color: $text-light;
       line-height: 1.5;
       margin-bottom: 2rem;
-      min-height: 3rem; // Damit alle Buttons auf gleicher Höhe sind
+      min-height: 3rem;
     }
   }
 
@@ -142,7 +131,7 @@ $text-light: #6b7280;
 
     a {
       width: 100%;
-      padding: 1.5rem 0; // Größere Klickfläche
+      padding: 1.5rem 0;
       border-radius: 12px;
       font-weight: 600;
     }
@@ -162,25 +151,18 @@ $text-light: #6b7280;
 
 .page-background {
   /* 1. Das Bild definieren */
-  background-image: url('../../../public/photo-1710162734135-8dc148f53abe.jpg');
+  background-image: url('../../../public/home_bg_image.jpg');
   /* Pfad anpassen! */
 
-  /* 2. Sicherstellen, dass es den ganzen Screen füllt */
   min-height: 100vh;
-  /* Mindestens die Höhe des Viewports */
   width: 100%;
 
-  /* 3. Bild-Skalierung und Positionierung */
   background-size: cover;
-  /* Skaliert das Bild, sodass es alles abdeckt (kein Verzerren) */
   background-position: center;
-  /* Zentriert das Bild */
   background-repeat: no-repeat;
-  /* Keine Wiederholung */
   background-attachment: fixed;
-  /* Optional: Bild bleibt beim Scrollen stehen (Parallax-Effekt) */
 
-  /* 4. Layout-Reset für den Inhalt (damit Toolbar oben bleibt) */
   display: flex;
   flex-direction: column;
+}
 }

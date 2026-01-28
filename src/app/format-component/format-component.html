@@ -1,54 +1,75 @@
-<div class="hero-container">
-  <h1>Bild formatieren</h1>
+<div class="page-container">
 
-  <input type="file" style="display: none" accept=".jpg, .jpeg, .png, .webp, .pdf, .tiff, .tif"
-    (change)="onFileSelected($event)" #fileUpload>
+  <div class="content-wrapper">
+    <header>
+      <h1 class="subtle-gradient">Bild formatieren</h1>
+      <p class="subtitle">Wählen Sie ein Bild und das neue Zielformat.</p>
+    </header>
 
-  <div class="file-info">
-    @if (selectedFile) {
-    <h2 class="file-name">
-      <mat-icon>description</mat-icon>
-      {{ selectedFile.name }}
-    </h2>
-    <p style="font-size: 0.8rem; opacity: 0.7; margin-top: -10px;">
-      Erkanntes Format: {{ sourceFormat | uppercase }}
-    </p>
-    } @else {
-    <h2>Bitte Datei auswählen</h2>
-    }
-  </div>
+    <div class="glass-card">
 
-  <div class="controls-container">
+      <input type="file" style="display: none"
+             accept=".jpg, .jpeg, .png, .webp, .pdf, .tiff, .tif"
+             (change)="onFileSelected($event)" #fileUpload>
 
-    @if (selectedFile) {
-    <div class="format-selector" style="margin-bottom: 5px;">
-      <span>Umwandeln in: </span>
-      <mat-button-toggle-group [(ngModel)]="targetFormat" name="targetFmt">
-        @for (fmt of formats; track fmt) {
-        <mat-button-toggle [value]="fmt" [disabled]="fmt === sourceFormat">
-          {{ fmt | uppercase }}
-        </mat-button-toggle>
+      <div class="upload-zone" [class.has-file]="selectedFile" (click)="fileUpload.click()">
+
+        @if (!selectedFile) {
+          <div class="empty-state">
+            <div class="icon-circle">
+              <mat-icon>cloud_upload</mat-icon>
+            </div>
+            <h3>Datei auswählen</h3> <p>JPG, PNG, WEBP, PDF, TIFF</p>
+          </div>
+        } @else {
+          <div class="file-state">
+            <div class="file-icon">
+              <mat-icon>image</mat-icon>
+            </div>
+            <div class="file-details">
+              <span class="fname">{{ selectedFile.name }}</span>
+              <span class="fmeta">{{ sourceFormat | uppercase }}</span>
+            </div>
+            <button mat-icon-button color="warn"
+                    (click)="$event.stopPropagation(); selectedFile = null; targetFormat = null; fileUpload.value = ''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
         }
-      </mat-button-toggle-group>
+      </div>
+
+      @if (selectedFile) {
+        <div class="controls-section">
+
+          <div class="format-selection">
+            <span class="label">Zielformat:</span>
+            <mat-button-toggle-group [(ngModel)]="targetFormat" name="targetFmt" class="modern-toggle">
+              @for (fmt of formats; track fmt) {
+                <mat-button-toggle [value]="fmt" [disabled]="fmt === sourceFormat">
+                  {{ fmt | uppercase }}
+                </mat-button-toggle>
+              }
+            </mat-button-toggle-group>
+          </div>
+
+          <div class="action-area">
+            <button mat-flat-button color="primary"
+                    [disabled]="!selectedFile || !targetFormat"
+                    (click)="onConvert()"
+                    class="large-cta">
+              Konvertieren
+              <mat-icon iconPositionEnd>download</mat-icon>
+            </button>
+          </div>
+
+        </div>
+      }
     </div>
-    }
-
-    <div class="button-row">
-      <button mat-stroked-button color="primary" (click)="fileUpload.click()" style="margin-right: 5px;">
-        <mat-icon>folder_open</mat-icon>
-        Auswählen
-      </button>
-
-      <button mat-raised-button color="primary" [disabled]="!selectedFile || !targetFormat" (click)="onConvert()">
-        Konvertieren
-        <mat-icon iconPositionEnd>sync_alt</mat-icon>
-      </button>
-    </div>
-
   </div>
-</div>
 
-<a matButton="filled" routerLink="/home" class="fixed-back-button">
-  <mat-icon>arrow_back</mat-icon>
-  Zurück zur Startseite
-</a>
+  <a routerLink="/home" class="floating-back">
+    <mat-icon>arrow_back</mat-icon>
+    <span>Startseite</span>
+  </a>
+
+</div>
