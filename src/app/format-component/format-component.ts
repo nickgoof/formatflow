@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,6 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { RouterLink } from "@angular/router";
 import { FormatFlowService } from '../shared/format-flow-service';
+import { LanguageService, Language } from '../shared/language-service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ff-format-component',
@@ -14,13 +16,52 @@ import { FormatFlowService } from '../shared/format-flow-service';
   styleUrl: './format-component.scss',
   providers: [FormatFlowService]
 })
-export class FormatComponent {
+export class FormatComponent implements OnInit, OnDestroy {
   selectedFile: File | null = null;
   formats: string[] = ['jpg', 'png', 'webp', 'pdf', 'tiff'];
   sourceFormat: string = '';
   targetFormat: string | null = null;
 
-  constructor(private ffservice: FormatFlowService) { }
+  // SPRACHE
+  currentLang: Language = 'de';
+  private langSub!: Subscription;
+
+  content = {
+    de: {
+      title: 'Bild formatieren',
+      subtitle: 'Wählen Sie ein Bild und das neue Zielformat.',
+      select_empty_title: 'Datei auswählen',
+      select_empty_desc: 'JPG, PNG, WEBP, PDF, TIFF',
+      target_label: 'Zielformat:',
+      btn_convert: 'Konvertieren',
+      btn_back: 'Startseite'
+    },
+    it: {
+      title: 'Cambia formato',
+      subtitle: 'Scegli un\'immagine e il nuovo formato di destinazione.',
+      select_empty_title: 'Seleziona file',
+      select_empty_desc: 'JPG, PNG, WEBP, PDF, TIFF',
+      target_label: 'Formato destinazione:',
+      btn_convert: 'Converti',
+      btn_back: 'Home'
+    }
+  };
+
+  constructor(
+    private ffservice: FormatFlowService,
+    private languageService: LanguageService
+  ) { }
+
+  ngOnInit() {
+    // Hier holen wir uns die Sprache aus dem globalen Speicher
+    this.langSub = this.languageService.currentLanguage$.subscribe(lang => {
+      this.currentLang = lang;
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.langSub) this.langSub.unsubscribe();
+  }
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
@@ -28,7 +69,6 @@ export class FormatComponent {
       this.selectedFile = file;
       this.detectSourceFormat(file.name);
 
-      // Falls das Zielformat zufällig das gleiche wie das neue Quellformat ist -> zurücksetzen
       if (this.targetFormat === this.sourceFormat) {
         this.targetFormat = null;
       }

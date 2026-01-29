@@ -4,15 +4,15 @@
     <header>
       @if (scale === 'upscaling') {
       <h1 class="subtle-gradient">
-        Bild aufwerten
+        {{ content[currentLang].up_title }}
       </h1>
-      <p class="subtitle">Wählen Sie ein kleines Bild zum aufskalieren.</p>
+      <p class="subtitle">{{ content[currentLang].up_subtitle }}</p>
       } @else {
       <h1 class="subtle-gradient">
-        Bild abwerten
+        {{ content[currentLang].down_title }}
       </h1>
-      <p class="subtitle">Wählen Sie ein Bild zum komprimieren und den Skalierungsfaktor.</p>
-    }
+      <p class="subtitle">{{ content[currentLang].down_subtitle }}</p>
+      }
     </header>
 
     <div class="glass-card">
@@ -26,8 +26,8 @@
           <div class="icon-circle">
             <mat-icon>add_photo_alternate</mat-icon>
           </div>
-          <h3>Bild auswählen</h3>
-          <p>JPG, PNG, WEBP</p>
+          <h3>{{ content[currentLang].select_title }}</h3>
+          <p>{{ content[currentLang].select_desc }}</p>
         </div>
         } @else {
         <div class="file-state">
@@ -36,7 +36,9 @@
           </div>
           <div class="file-details">
             <span class="fname">{{ selectedFile.name }}</span>
-            <span class="fmeta">Bereit zum {{ scale === 'upscaling' ? 'Aufwerten' : 'Abwerten' }}</span>
+            <span class="fmeta">
+              {{ scale === 'upscaling' ? content[currentLang].ready_up : content[currentLang].ready_down }}
+            </span>
           </div>
           <button mat-icon-button color="warn"
             (click)="$event.stopPropagation(); selectedFile = null; fileUpload.value = ''">
@@ -50,7 +52,7 @@
       <div class="controls-section">
 
         <div class="format-selection">
-          <span class="label">Komprimierungsfaktor:</span>
+          <span class="label">{{ content[currentLang].label_compress }}</span>
           <mat-button-toggle-group [(ngModel)]="compressionFactor" name="compressionFactor" class="modern-toggle">
             <mat-button-toggle [value]="2">2x</mat-button-toggle>
             <mat-button-toggle [value]="4">4x</mat-button-toggle>
@@ -61,7 +63,7 @@
         <div class="action-area">
           <button mat-flat-button color="primary" [disabled]="!selectedFile || !compressionFactor"
             (click)=" onDownscale()" class="large-cta">
-              Abwerten
+            {{ content[currentLang].btn_down }}
             <mat-icon iconPositionEnd>
               compress
             </mat-icon>
@@ -73,16 +75,16 @@
       <div class="controls-section">
 
         <div class="format-selection">
-          <span class="label">Skalierungsfaktor:</span>
-            <mat-button-toggle-group class="modern-toggle" [(ngModel)]="upscaleFactor" name="upscaleFactor">
-              <mat-button-toggle [value]="4">4x</mat-button-toggle>
-            </mat-button-toggle-group>
+          <span class="label">{{ content[currentLang].label_scale }}</span>
+          <mat-button-toggle-group class="modern-toggle" [(ngModel)]="upscaleFactor" name="upscaleFactor">
+            <mat-button-toggle [value]="4">4x</mat-button-toggle>
+          </mat-button-toggle-group>
         </div>
 
         <div class="action-area">
-          <button mat-flat-button color="primary" [disabled]="!selectedFile || !upscaleFactor"
-            (click)=" onUpscale()" class="large-cta">
-              Skalieren
+          <button mat-flat-button color="primary" [disabled]="!selectedFile || !upscaleFactor" (click)=" onUpscale()"
+            class="large-cta">
+            {{ content[currentLang].btn_up }}
             <mat-icon iconPositionEnd>
               upgrade
             </mat-icon>
@@ -96,7 +98,7 @@
 
   <a routerLink="/home" class="floating-back">
     <mat-icon>arrow_back</mat-icon>
-    <span>Startseite</span>
+    <span>{{ content[currentLang].btn_back }}</span>
   </a>
 
 </div>

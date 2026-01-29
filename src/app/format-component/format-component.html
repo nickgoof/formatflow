@@ -2,74 +2,72 @@
 
   <div class="content-wrapper">
     <header>
-      <h1 class="subtle-gradient">Bild formatieren</h1>
-      <p class="subtitle">Wählen Sie ein Bild und das neue Zielformat.</p>
+      <h1 class="subtle-gradient">{{ content[currentLang].title }}</h1>
+      <p class="subtitle">{{ content[currentLang].subtitle }}</p>
     </header>
 
     <div class="glass-card">
 
-      <input type="file" style="display: none"
-             accept=".jpg, .jpeg, .png, .webp, .pdf, .tiff, .tif"
-             (change)="onFileSelected($event)" #fileUpload>
+      <input type="file" style="display: none" accept=".jpg, .jpeg, .png, .webp, .pdf, .tiff, .tif"
+        (change)="onFileSelected($event)" #fileUpload>
 
       <div class="upload-zone" [class.has-file]="selectedFile" (click)="fileUpload.click()">
 
         @if (!selectedFile) {
-          <div class="empty-state">
-            <div class="icon-circle">
-              <mat-icon>cloud_upload</mat-icon>
-            </div>
-            <h3>Datei auswählen</h3> <p>JPG, PNG, WEBP, PDF, TIFF</p>
+        <div class="empty-state">
+          <div class="icon-circle">
+            <mat-icon>cloud_upload</mat-icon>
           </div>
+          <h3>{{ content[currentLang].select_empty_title }}</h3>
+          <p>{{ content[currentLang].select_empty_desc }}</p>
+        </div>
         } @else {
-          <div class="file-state">
-            <div class="file-icon">
-              <mat-icon>image</mat-icon>
-            </div>
-            <div class="file-details">
-              <span class="fname">{{ selectedFile.name }}</span>
-              <span class="fmeta">{{ sourceFormat | uppercase }}</span>
-            </div>
-            <button mat-icon-button color="warn"
-                    (click)="$event.stopPropagation(); selectedFile = null; targetFormat = null; fileUpload.value = ''">
-              <mat-icon>close</mat-icon>
-            </button>
+        <div class="file-state">
+          <div class="file-icon">
+            <mat-icon>image</mat-icon>
           </div>
+          <div class="file-details">
+            <span class="fname">{{ selectedFile.name }}</span>
+            <span class="fmeta">{{ sourceFormat | uppercase }}</span>
+          </div>
+          <button mat-icon-button color="warn"
+            (click)="$event.stopPropagation(); selectedFile = null; targetFormat = null; fileUpload.value = ''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
         }
       </div>
 
       @if (selectedFile) {
-        <div class="controls-section">
+      <div class="controls-section">
 
-          <div class="format-selection">
-            <span class="label">Zielformat:</span>
-            <mat-button-toggle-group [(ngModel)]="targetFormat" name="targetFmt" class="modern-toggle">
-              @for (fmt of formats; track fmt) {
-                <mat-button-toggle [value]="fmt" [disabled]="fmt === sourceFormat">
-                  {{ fmt | uppercase }}
-                </mat-button-toggle>
-              }
-            </mat-button-toggle-group>
-          </div>
-
-          <div class="action-area">
-            <button mat-flat-button color="primary"
-                    [disabled]="!selectedFile || !targetFormat"
-                    (click)="onConvert()"
-                    class="large-cta">
-              Konvertieren
-              <mat-icon iconPositionEnd>download</mat-icon>
-            </button>
-          </div>
-
+        <div class="format-selection">
+          <span class="label">{{ content[currentLang].target_label }}</span>
+          <mat-button-toggle-group [(ngModel)]="targetFormat" name="targetFmt" class="modern-toggle">
+            @for (fmt of formats; track fmt) {
+            <mat-button-toggle [value]="fmt" [disabled]="fmt === sourceFormat">
+              {{ fmt | uppercase }}
+            </mat-button-toggle>
+            }
+          </mat-button-toggle-group>
         </div>
+
+        <div class="action-area">
+          <button mat-flat-button color="primary" [disabled]="!selectedFile || !targetFormat" (click)="onConvert()"
+            class="large-cta">
+            {{ content[currentLang].btn_convert }}
+            <mat-icon iconPositionEnd>download</mat-icon>
+          </button>
+        </div>
+
+      </div>
       }
     </div>
   </div>
 
   <a routerLink="/home" class="floating-back">
     <mat-icon>arrow_back</mat-icon>
-    <span>Startseite</span>
+    <span>{{ content[currentLang].btn_back }}</span>
   </a>
 
 </div>
