@@ -18,6 +18,8 @@ $text-light: #6b7280;
   background: transparent;
   box-shadow: none;
   padding: 0 2rem;
+  display: flex;
+  align-items: center;
 
   .logo {
     font-weight: 700;
@@ -30,9 +32,15 @@ $text-light: #6b7280;
     flex: 1 1 auto;
   }
 
-  a {
+  a,
+  button.lang-btn {
     color: $text-dark;
     font-weight: 500;
+
+    // Optional: Kleiner Abstand zwischen Icon und Text im Button
+    mat-icon {
+      margin-right: 4px;
+    }
   }
 }
 
@@ -93,6 +101,7 @@ $text-light: #6b7280;
     transform: translateY(-5px);
     box-shadow: 0 20px 50px -10px rgba(194, 24, 91, 0.15);
   }
+
   .icon-box {
     background-color: rgba($primary-color, 0.1);
     color: $primary-color;
@@ -165,4 +174,3 @@ $text-light: #6b7280;
   display: flex;
   flex-direction: column;
 }
-
