@@ -2,10 +2,17 @@
 
   <div class="content-wrapper">
     <header>
+      @if (scale === 'upscaling') {
       <h1 class="subtle-gradient">
-        @if (scale === 'upscaling') { Bild aufwerten } @else { Bild abwerten }
+        Bild aufwerten
       </h1>
-      <p class="subtitle">Wählen Sie ein Bild und den Skalierungsfaktor.</p>
+      <p class="subtitle">Wählen Sie ein kleines Bild zum aufskalieren.</p>
+      } @else {
+      <h1 class="subtle-gradient">
+        Bild abwerten
+      </h1>
+      <p class="subtitle">Wählen Sie ein Bild zum komprimieren und den Skalierungsfaktor.</p>
+    }
     </header>
 
     <div class="glass-card">
@@ -39,12 +46,12 @@
         }
       </div>
 
-      @if (selectedFile) {
+      @if (selectedFile && scale === 'downscaling') {
       <div class="controls-section">
 
         <div class="format-selection">
-          <span class="label">Skalierungsfaktor:</span>
-          <mat-button-toggle-group [(ngModel)]="upscaleFactor" name="scaleFactor" class="modern-toggle">
+          <span class="label">Komprimierungsfaktor:</span>
+          <mat-button-toggle-group [(ngModel)]="compressionFactor" name="compressionFactor" class="modern-toggle">
             <mat-button-toggle [value]="2">2x</mat-button-toggle>
             <mat-button-toggle [value]="4">4x</mat-button-toggle>
             <mat-button-toggle [value]="8">8x</mat-button-toggle>
@@ -52,11 +59,32 @@
         </div>
 
         <div class="action-area">
-          <button mat-flat-button color="primary" [disabled]="!selectedFile || !upscaleFactor"
-            (click)="scale === 'upscaling' ? onUpscale() : onDownscale()" class="large-cta">
-            @if (scale === 'upscaling') { Aufwerten } @else { Abwerten }
+          <button mat-flat-button color="primary" [disabled]="!selectedFile || !compressionFactor"
+            (click)=" onDownscale()" class="large-cta">
+              Abwerten
             <mat-icon iconPositionEnd>
-              {{ scale === 'upscaling' ? 'upgrade' : 'compress' }}
+              compress
+            </mat-icon>
+          </button>
+        </div>
+
+      </div>
+      } @else if (selectedFile && scale === 'upscaling') {
+      <div class="controls-section">
+
+        <div class="format-selection">
+          <span class="label">Skalierungsfaktor:</span>
+            <mat-button-toggle-group class="modern-toggle" [(ngModel)]="upscaleFactor" name="upscaleFactor">
+              <mat-button-toggle [value]="4">4x</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+
+        <div class="action-area">
+          <button mat-flat-button color="primary" [disabled]="!selectedFile || !upscaleFactor"
+            (click)=" onUpscale()" class="large-cta">
+              Skalieren
+            <mat-icon iconPositionEnd>
+              upgrade
             </mat-icon>
           </button>
         </div>

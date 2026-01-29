@@ -17,7 +17,8 @@ import { FormatFlowService } from '../shared/format-flow-service';
 export class PixelComponent {
   scale: string = '';
   selectedFile: File | null = null;
-  upscaleFactor: number = 2;
+  compressionFactor: number = 2;
+  upscaleFactor: number = 4;
 
   constructor(private route: ActivatedRoute, private ffservice: FormatFlowService) { }
 
@@ -49,7 +50,7 @@ export class PixelComponent {
 
   onDownscale(): void {
     if (this.selectedFile) {
-      this.ffservice.downscaleImage(this.selectedFile, this.upscaleFactor).subscribe({
+      this.ffservice.downscaleImage(this.selectedFile, this.compressionFactor).subscribe({
         next: (blob: Blob) => {
           const downloadLink = document.createElement('a');
           downloadLink.href = URL.createObjectURL(blob);
