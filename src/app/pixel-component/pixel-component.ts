@@ -28,9 +28,9 @@ export class PixelComponent implements OnInit, OnDestroy {
 
   content = {
     de: {
-      up_title: 'Bild aufwerten',
+      up_title: 'Auflösung erhöhen',
       up_subtitle: 'Wählen Sie ein kleines Bild zum aufskalieren.',
-      down_title: 'Bild abwerten',
+      down_title: 'Auflösung reduzieren',
       down_subtitle: 'Wählen Sie ein Bild zum komprimieren und den Skalierungsfaktor.',
 
       select_title: 'Bild auswählen',

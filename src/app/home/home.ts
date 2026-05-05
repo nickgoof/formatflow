@@ -29,12 +29,12 @@ export class Home {
       card1_title: 'Format ändern',
       card1_desc: 'Wandeln Sie PNG in JPG, WebP und mehr um. Ohne Qualitätsverlust.',
       card1_btn: 'Jetzt konvertieren',
-      card2_title: 'Bild aufwerten',
+      card2_title: 'Auflösung erhöhen',
       card2_desc: 'Nutzen Sie KI-Upscaling, um niedrige Auflösungen scharf zu machen.',
-      card2_btn: 'Bild aufwerten',
-      card3_title: 'Bild abwerten',
+      card2_btn: 'Auflösung erhöhen',
+      card3_title: 'Auflösung reduzieren',
       card3_desc: 'Reduzieren Sie die Dateigröße effizient für Web und Mail.',
-      card3_btn: 'Bild abwerten'
+      card3_btn: 'Auflösung reduzieren'
     },
     it: {
       nav_btn: 'DE',

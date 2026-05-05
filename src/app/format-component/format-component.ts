@@ -28,7 +28,7 @@ export class FormatComponent implements OnInit, OnDestroy {
 
   content = {
     de: {
-      title: 'Bild formatieren',
+      title: 'Format konvertieren',
       subtitle: 'Wählen Sie ein Bild und das neue Zielformat.',
       select_empty_title: 'Datei auswählen',
       select_empty_desc: 'JPG, PNG, WEBP, PDF, TIFF',
