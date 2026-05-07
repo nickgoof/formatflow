@@ -21,6 +21,7 @@ export class FormatComponent implements OnInit, OnDestroy {
   formats: string[] = ['jpg', 'png', 'webp', 'pdf', 'tiff'];
   sourceFormat: string = '';
   targetFormat: string | null = null;
+  isLoading: boolean = false;
 
   // SPRACHE
   currentLang: Language = 'de';
@@ -34,6 +35,7 @@ export class FormatComponent implements OnInit, OnDestroy {
       select_empty_desc: 'JPG, PNG, WEBP, PDF, TIFF',
       target_label: 'Zielformat:',
       btn_convert: 'Konvertieren',
+      btn_loading: 'Verarbeite...',
       btn_back: 'Startseite'
     },
     it: {
@@ -43,6 +45,7 @@ export class FormatComponent implements OnInit, OnDestroy {
       select_empty_desc: 'JPG, PNG, WEBP, PDF, TIFF',
       target_label: 'Formato destinazione:',
       btn_convert: 'Converti',
+      btn_loading: 'Elaborazione...',
       btn_back: 'Home'
     }
   };
@@ -84,6 +87,7 @@ export class FormatComponent implements OnInit, OnDestroy {
 
   onConvert(): void {
     if (this.selectedFile && this.targetFormat) {
+      this.isLoading = true;
       this.ffservice.convertFile(this.selectedFile, this.targetFormat).subscribe({
         next: (blob: Blob) => {
           const downloadLink = document.createElement('a');
@@ -92,6 +96,12 @@ export class FormatComponent implements OnInit, OnDestroy {
           document.body.appendChild(downloadLink);
           downloadLink.click();
           document.body.removeChild(downloadLink);
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.error("Fehler beim Konvertieren:", err);
+          alert("Fehler bei der Konvertierung. Bitte versuche es erneut.");
+          this.isLoading = false;
         }
       });
     }

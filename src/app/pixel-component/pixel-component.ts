@@ -21,6 +21,7 @@ export class PixelComponent implements OnInit, OnDestroy {
   selectedFile: File | null = null;
   compressionFactor: number = 2;
   upscaleFactor: number = 4;
+  isLoading: boolean = false;
 
   // SPRACHE
   currentLang: Language = 'de';
@@ -44,6 +45,7 @@ export class PixelComponent implements OnInit, OnDestroy {
 
       btn_down: 'Abwerten',
       btn_up: 'Skalieren',
+      btn_loading: 'Verarbeite...',
       btn_back: 'Startseite'
     },
     it: {
@@ -63,6 +65,7 @@ export class PixelComponent implements OnInit, OnDestroy {
 
       btn_down: 'Comprimi',
       btn_up: 'Scala',
+      btn_loading: 'Elaborazione...',
       btn_back: 'Home'
     }
   };
@@ -96,6 +99,7 @@ export class PixelComponent implements OnInit, OnDestroy {
 
   onUpscale(): void {
     if (this.selectedFile) {
+      this.isLoading = true;
       this.ffservice.upscaleImage(this.selectedFile, this.upscaleFactor).subscribe({
         next: (blob: Blob) => {
           const downloadLink = document.createElement('a');
@@ -104,6 +108,12 @@ export class PixelComponent implements OnInit, OnDestroy {
           document.body.appendChild(downloadLink);
           downloadLink.click();
           document.body.removeChild(downloadLink);
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.error("Fehler beim Upscaling", err);
+          alert("Fehler beim Skalieren des Bildes.");
+          this.isLoading = false;
         }
       });
     }
@@ -111,6 +121,7 @@ export class PixelComponent implements OnInit, OnDestroy {
 
   onDownscale(): void {
     if (this.selectedFile) {
+      this.isLoading = true;
       this.ffservice.downscaleImage(this.selectedFile, this.compressionFactor).subscribe({
         next: (blob: Blob) => {
           const downloadLink = document.createElement('a');
@@ -119,6 +130,12 @@ export class PixelComponent implements OnInit, OnDestroy {
           document.body.appendChild(downloadLink);
           downloadLink.click();
           document.body.removeChild(downloadLink);
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.error("Fehler beim Downscaling", err);
+          alert("Fehler beim Verkleinern des Bildes.");
+          this.isLoading = false;
         }
       });
     }

@@ -53,10 +53,13 @@
         </div>
 
         <div class="action-area">
-          <button mat-flat-button color="primary" [disabled]="!selectedFile || !targetFormat" (click)="onConvert()"
+          <button mat-flat-button color="primary"
+            [disabled]="!selectedFile || !targetFormat || isLoading"
+            (click)="onConvert()"
             class="large-cta">
-            {{ content[currentLang].btn_convert }}
-            <mat-icon iconPositionEnd>download</mat-icon>
+
+            <span>{{ isLoading ? content[currentLang].btn_loading : content[currentLang].btn_convert }}</span>
+            <mat-icon iconPositionEnd>{{ isLoading ? 'hourglass_empty' : 'download' }}</mat-icon>
           </button>
         </div>
 

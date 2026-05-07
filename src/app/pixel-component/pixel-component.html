@@ -61,12 +61,12 @@
         </div>
 
         <div class="action-area">
-          <button mat-flat-button color="primary" [disabled]="!selectedFile || !compressionFactor"
-            (click)=" onDownscale()" class="large-cta">
-            {{ content[currentLang].btn_down }}
-            <mat-icon iconPositionEnd>
-              compress
-            </mat-icon>
+          <button mat-flat-button color="primary"
+            [disabled]="!selectedFile || !compressionFactor || isLoading"
+            (click)="onDownscale()" class="large-cta">
+
+            <span>{{ isLoading ? content[currentLang].btn_loading : content[currentLang].btn_down }}</span>
+            <mat-icon iconPositionEnd>{{ isLoading ? 'hourglass_empty' : 'compress' }}</mat-icon>
           </button>
         </div>
 
@@ -82,12 +82,13 @@
         </div>
 
         <div class="action-area">
-          <button mat-flat-button color="primary" [disabled]="!selectedFile || !upscaleFactor" (click)=" onUpscale()"
+          <button mat-flat-button color="primary"
+            [disabled]="!selectedFile || !upscaleFactor || isLoading"
+            (click)="onUpscale()"
             class="large-cta">
-            {{ content[currentLang].btn_up }}
-            <mat-icon iconPositionEnd>
-              upgrade
-            </mat-icon>
+
+            <span>{{ isLoading ? content[currentLang].btn_loading : content[currentLang].btn_up }}</span>
+            <mat-icon iconPositionEnd>{{ isLoading ? 'hourglass_empty' : 'upgrade' }}</mat-icon>
           </button>
         </div>
 
