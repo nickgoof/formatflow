@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+EDSR_x4.pb
+main_starten.txt
+main.py
+requirements.txt
