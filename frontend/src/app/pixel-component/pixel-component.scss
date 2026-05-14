@@ -21,7 +21,7 @@ $toggle-color: #c2185ca1;
   padding: 1rem;
   box-sizing: border-box;
 
-  // Hintergrundbild Einstellungen (übernommen von Home)
+  // Hintergrundbild
   background-image: url('../../../public/home_bg_image.jpg');
   background-size: cover;
   background-position: center;
@@ -34,9 +34,16 @@ $toggle-color: #c2185ca1;
   max-width: 600px;
   text-align: center;
   z-index: 1;
-  max-height: 90vh;
+  max-height: 85vh; // Leicht reduziert, damit unten Platz für den Button bleibt
   overflow-y: auto;
   padding: 10px;
+
+  // Versteckt die Scrollbar für ein cleaneres Design
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 header {
@@ -46,22 +53,30 @@ header {
     font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 0.25rem;
-
-    // Gradient Setup
     background: linear-gradient(135deg, #1f2937 30%, #880e4f 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
+    line-height: 1.2; // Etwas verringert für bessere mehrzeilige Darstellung
+    padding-bottom: 0.1em;
 
-    line-height: 1.4;
-    padding-bottom: 0.2em;
-    padding-top: 0.1em;
+    // NEU: Schriftgröße auf Handys verkleinern
+    @media (max-width: 600px) {
+      font-size: 2.2rem;
+    }
   }
 
   .subtitle {
     color: $text-light;
     font-size: 1.1rem;
     margin-top: 0;
+    padding: 0 15px; // Verhindert, dass der Text den Rand berührt
+    word-wrap: break-word;
+
+    // NEU: Untertitel auf Handys leicht anpassen
+    @media (max-width: 600px) {
+      font-size: 0.95rem;
+    }
   }
 }
 
@@ -72,6 +87,11 @@ header {
   padding: 1.5rem;
   box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.9);
+
+  // NEU: Etwas kompakter auf mobilen Bildschirmen
+  @media (max-width: 600px) {
+    padding: 1.2rem;
+  }
 }
 
 .upload-zone {
@@ -246,12 +266,27 @@ header {
   text-decoration: none;
   font-size: 18px;
   font-weight: 600;
-  transition: transform 0.2s;
+  transition: transform 0.2s, background-color 0.2s; // Background color transition added
   z-index: 100;
 
   &:hover {
     transform: translateY(-2px);
     color: $primary-color;
+  }
+
+  // NEU: Anpassung für Mobilgeräte
+  @media (max-width: 768px) {
+    bottom: 1.5rem; // Näher an den unteren Rand
+    right: auto; // Hebt das "rechtsbündig" auf
+    left: 50%; // Schiebt es in die Mitte...
+    transform: translateX(-50%); // ...und zentriert es exakt
+    padding: 0.8rem 1.6rem;
+    font-size: 16px; // Etwas kleinere Schrift
+
+    // WICHTIG: Hover-Effekt anpassen, sonst springt der Button beim Klicken wieder nach links
+    &:hover {
+      transform: translate(-50%, -2px);
+    }
   }
 }
 

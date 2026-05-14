@@ -34,9 +34,16 @@ $toggle-color: #c2185ca1;
   max-width: 600px;
   text-align: center;
   z-index: 1;
-  max-height: 90vh;
+  max-height: 85vh; // Reduziert für den zentrierten Button auf Mobile
   overflow-y: auto;
   padding: 10px;
+
+  // Versteckt die Scrollbar
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 header {
@@ -46,22 +53,30 @@ header {
     font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 0.25rem;
-
-    // Gradient Setup
     background: linear-gradient(135deg, #1f2937 30%, #880e4f 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
+    line-height: 1.2;
+    padding-bottom: 0.1em;
 
-    line-height: 1.4;
-    padding-bottom: 0.2em;
-    padding-top: 0.1em;
+    // NEU: Schriftgröße auf Handys verkleinern
+    @media (max-width: 600px) {
+      font-size: 2.2rem;
+    }
   }
 
   .subtitle {
     color: $text-light;
     font-size: 1.1rem;
     margin-top: 0;
+    padding: 0 15px;
+    word-wrap: break-word;
+
+    // NEU: Untertitel auf Handys leicht anpassen
+    @media (max-width: 600px) {
+      font-size: 0.95rem;
+    }
   }
 }
 
@@ -72,6 +87,11 @@ header {
   padding: 1.5rem;
   box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.9);
+
+  // NEU: Kompakter auf mobilen Bildschirmen
+  @media (max-width: 600px) {
+    padding: 1.2rem;
+  }
 }
 
 .upload-zone {
@@ -246,12 +266,27 @@ header {
   text-decoration: none;
   font-size: 18px;
   font-weight: 600;
-  transition: transform 0.2s;
+  transition: transform 0.2s, background-color 0.2s;
   z-index: 100;
 
   &:hover {
     transform: translateY(-2px);
     color: $primary-color;
+  }
+
+  // NEU: Zentrierung für Mobilgeräte
+  @media (max-width: 768px) {
+    bottom: 1.5rem;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.8rem 1.6rem;
+    font-size: 16px;
+
+    // Hover-Effekt anpassen
+    &:hover {
+      transform: translate(-50%, -2px);
+    }
   }
 }
 
