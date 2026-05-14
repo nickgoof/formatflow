@@ -1,0 +1,176 @@
+$primary-color: #c2185b;
+$bg-color: #f8f9fc;
+$text-dark: #1f2937;
+$text-light: #6b7280;
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: $bg-color;
+  // Subtiler Hintergrund-Verlauf (Mesh Gradient Effekt)
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 226, 236, 0.8) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(230, 230, 255, 0.8) 0%, transparent 40%);
+  font-family: 'Inter', 'Roboto', sans-serif;
+}
+
+.transparent-nav {
+  background: transparent;
+  box-shadow: none;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: $text-dark;
+    letter-spacing: -0.5px;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  a,
+  button.lang-btn {
+    color: $text-dark;
+    font-weight: 500;
+
+    // Optional: Kleiner Abstand zwischen Icon und Text im Button
+    mat-icon {
+      margin-right: 4px;
+    }
+  }
+}
+
+.main-content {
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-header {
+  margin-bottom: 5rem;
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: $text-dark;
+
+    .text-gradient {
+      background: linear-gradient(45deg, $primary-color, #ff8a65);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: $text-light;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+.action-grid {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+// Styling der einzelnen Karten
+.feature-card {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 24px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px -10px rgba(194, 24, 91, 0.15);
+  }
+
+  .icon-box {
+    background-color: rgba($primary-color, 0.1);
+    color: $primary-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+
+    mat-icon {
+      font-size: 24px;
+    }
+  }
+
+  mat-card-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  mat-card-content {
+    p {
+      color: $text-light;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+      min-height: 3rem;
+    }
+  }
+
+  mat-card-actions {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+    a {
+      width: 100%;
+      padding: 1.5rem 0;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+  }
+}
+
+// Responsive Anpassung für Handy
+@media (max-width: 768px) {
+  .hero-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .transparent-nav {
+    padding: 0 1rem;
+  }
+}
+
+.page-background {
+  /* 1. Das Bild definieren */
+  background-image: url('../../../public/home_bg_image.jpg');
+  /* Pfad anpassen! */
+
+  min-height: 100vh;
+  width: 100%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  display: flex;
+  flex-direction: column;
+}

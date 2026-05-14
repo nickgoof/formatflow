@@ -1,47 +1,20 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# --- Python / Backend ---
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# --- Umgebungsvariablen / Secrets (falls du später welche nutzt) ---
+.env
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
-
-# IDEs and editors
+# --- IDEs und Editoren ---
+.vscode/
 .idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
+# --- Systemdateien ---
 .DS_Store
 Thumbs.db
-
-EDSR_x4.pb
-main_starten.txt
-main.py
-requirements.txt

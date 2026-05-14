@@ -1,0 +1,6 @@
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+
+Du erkennst, dass es geklappt hat, wenn (.venv) vorne an der Zeile steht
+das Terminal vergisst, wo deine Werkzeuge liegen. Du musst es nur kurz "erinnern"
